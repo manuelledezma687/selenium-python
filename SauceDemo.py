@@ -3,7 +3,7 @@ from selenium import webdriver
 from pyunitreport import HTMLTestRunner
 from time import sleep
 
-class NuevoTestPage(unittest.TestCase):  
+class Saucetest(unittest.TestCase):  
 
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path  = './chromedriver')
@@ -27,6 +27,7 @@ class NuevoTestPage(unittest.TestCase):
     
         driver.find_element_by_id('login-button').click()
         sleep(3)
+
 
         driver.find_element_by_id("add-to-cart-sauce-labs-backpack").click()
         driver.find_element_by_id("add-to-cart-sauce-labs-bike-light").click()

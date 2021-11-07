@@ -60,6 +60,8 @@ class NuevoTestPage(unittest.TestCase):
         name_on_card.send_keys("Manuel Ledezma")
         submit_button.click() 
         sleep (3)
+        final = driver.find_element_by_tag_name('h1')
+        assert final.text == "Thank you for your purchase today!"
 
     def tearDown(self):
         self.driver.implicitly_wait(20)
@@ -67,7 +69,7 @@ class NuevoTestPage(unittest.TestCase):
 
 
 if __name__=='__main__':
-    unittest.main (verbosity=2, testRunner = HTMLTestRunner(output = 'reportes', report_name='PurchaseBlazedemo'))
+    unittest.main (verbosity=2, testRunner = HTMLTestRunner(output = 'reportes', report_name='PurchaseBlazedemo21'))
 
 
 
