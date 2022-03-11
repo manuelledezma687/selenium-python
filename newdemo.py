@@ -1,11 +1,14 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service as ChromeService
+from selenium.webdriver.common.by import By
 
 
-class newdemo(unittest.TestCase):
+class newDemo(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path  = './chromedriver')
+        s = ChromeService(executable_path='chromedriver')
+        self.driver = webdriver.Chrome(service=s)
         driver = self.driver
         driver.implicitly_wait(30)
         driver.maximize_window()
@@ -13,15 +16,15 @@ class newdemo(unittest.TestCase):
 
     def test_newdemo(self):
         driver = self.driver
-        driver.find_element_by_id('confirmButton').click()
+        driver.find_element(By.ID,'confirmButton').click()
         alert = driver.switch_to_alert()
         alert_text = alert.text
         self.assertEqual('Do you confirm action?', alert_text)
         alert.accept()
 
     def tearDown(self):
-        self.driver.implicitly_wait(20)
         self.driver.close() 
 
-if __name__ == "__main__":
-	unittest.main(verbosity = 2)
+if __name__=="__main__":
+    unittest.main(verbosity=2,)
+

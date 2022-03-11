@@ -1,4 +1,4 @@
 *.exe
-reposts
+/reposts
 .vscode
 __pycache__

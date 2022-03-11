@@ -1,19 +1,18 @@
 import unittest
 from selenium import webdriver
-#sirve como excepción para los assertions cuando queremos
-#validar la presencia de un elemento
 from selenium.common.exceptions import NoSuchElementException
-#ayuda a llamar a las excepciones que queremos validar
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
+
 
 class AssertionsTest(unittest.TestCase):
 
 	def setUp(self):
-		self.driver = webdriver.Chrome(executable_path = './chromedriver')
-		driver = self.driver
-		driver.implicitly_wait(30)
-		driver.maximize_window()
-		driver.get("http://demo.onestepcheckout.com/")
+		s = ChromeService(executable_path='chromedriver')
+		self.driver = webdriver.Chrome(service=s)
+		self.driver.implicitly_wait(10)
+		self.driver.maximize_window()
+		self.driver.get("http://demo.onestepcheckout.com/")
 
 	def test_search_field(self):
 		self.assertTrue(self.is_element_present(By.NAME, 'q'))

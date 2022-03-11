@@ -1,19 +1,19 @@
 import unittest
 from selenium import webdriver
 from pyunitreport import HTMLTestRunner
-from fromshop import newticket
-from time import sleep
+from pages.fromshop import newTicket
+from selenium.webdriver.chrome.service import Service as ChromeService
+
 
 class testblaze(unittest.TestCase):
     
-
     @classmethod
     def setUp(cls):
-        cls.driver = webdriver.Chrome(executable_path='../chromedriver')
-
+        s = ChromeService(executable_path='chromedriver')
+        cls.driver = webdriver.Chrome(service=s)
 
     def testpurchase(self):
-        newsale = newticket(self.driver)
+        newsale = newTicket(self.driver)
         newsale.open()
         newsale.name('alejandro')
         newsale.address('asdasdasd')
@@ -29,8 +29,6 @@ class testblaze(unittest.TestCase):
         newsale.field_assertion()
         newsale.click_submit()
         newsale.confirmshop()
-        sleep(2)
-
 
     @classmethod
     def tearDown(cls):

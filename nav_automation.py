@@ -1,18 +1,21 @@
 import unittest
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromeService
 
 
-class googletest(unittest.TestCase):
+class googleTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path='chromedriver')
+        s = ChromeService(executable_path='chromedriver')
+        self.driver = webdriver.Chrome(service=s)
         self.driver.maximize_window()
         self.driver.implicitly_wait(10)
 
     def test_google(self):
         driver = self.driver
         driver.get("https://www.google.com/")
-        field = driver.find_element_by_name('q')
+        field = driver.find_element(By.NAME,'q')
         field.clear()
         field.send_keys("hola")
         field.submit()

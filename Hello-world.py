@@ -1,12 +1,14 @@
 import unittest
 from selenium import webdriver
 from pyunitreport import HTMLTestRunner
+from selenium.webdriver.chrome.service import Service as ChromeService
+
 
 class test_helloworld(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path  ="./chromedriver")
-
+        s = ChromeService(executable_path='chromedriver')
+        self.driver = webdriver.Chrome(service=s)
 
     def test_hello_world_google(self):
         self.driver.get("https://www.google.com/")
@@ -23,9 +25,9 @@ class test_helloworld(unittest.TestCase):
         driver = self.driver
         driver.maximize_window()
 
-
     def tearDown(self):
         self.driver.close()
+
 
 if __name__=="__main__":
     unittest.main(verbosity=2,testRunner = HTMLTestRunner(output = 'reportes', report_name='helloword-practice1'))
